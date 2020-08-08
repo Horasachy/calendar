@@ -18,8 +18,10 @@ class CreateCalendarEventsTable extends Migration
             $table->string('name');
             $table->double('cost');
             $table->string('type');
+            $table->unsignedInteger('company_id');
             $table->unsignedInteger('employee_id');
             $table->unsignedTinyInteger('work_shift');
+            $table->timestamp('event_at');
             $table->timestamps();
         });
     }

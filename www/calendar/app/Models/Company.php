@@ -14,20 +14,21 @@ class Company extends Model
     protected $fillable = [
         'name'
     ];
+    protected $with = 'users';
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'company_users', 'company_id', 'user_id');
+        return $this->belongsToMany(User::class, 'company_users', 'company_id', 'employee_id');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function events()
     {
-        return $this->belongsToMany(CalendarEvent::class, 'company_events', 'company_id', 'event_id');
+        return $this->belongsTo(CalendarEvent::class, 'id', 'company_id');
     }
 }

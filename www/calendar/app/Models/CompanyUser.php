@@ -12,7 +12,7 @@ class CompanyUser extends Model
      * @var array
      */
     protected $fillable = [
-        'company_id', 'user_id'
+        'company_id', 'employee_id'
     ];
 
 }

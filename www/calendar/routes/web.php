@@ -14,10 +14,28 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/', 'CalendarEventsController@index')->name('home');
+
+
+        Route::get('/company', 'CompanyController@index')->name('company.index');
+    Route::group(['prefix' => '/company', 'as' => 'company.'], function () {
+        Route::get('/create', 'CompanyController@create')->name('create');
+        Route::post('/store', 'CompanyController@store')->name('store');
+        Route::get('/{company}/edit', 'CompanyController@edit')->name('edit');
+        Route::put('/{company}/update', 'CompanyController@update')->name('update');
+        Route::delete('/{company}/delete', 'CompanyController@delete')->name('delete');
+    });
+
+        Route::get('/calendar', 'CalendarEventsController@index')->name('calendar.index');
+    Route::group(['prefix' => '/calendar', 'as' => 'calendar.'], function () {
+        Route::get('/create', 'CalendarEventsController@create')->name('create');
+        Route::post('/store', 'CalendarEventsController@store')->name('store');
+        Route::get('/{event}/edit', 'CalendarEventsController@edit')->name('edit');
+        Route::put('/{event}/update', 'CalendarEventsController@update')->name('update');
+        Route::delete('/{event}/delete', 'CalendarEventsController@delete')->name('delete');
+    });
+
 });
