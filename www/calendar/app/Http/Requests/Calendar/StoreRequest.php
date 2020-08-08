@@ -2,10 +2,13 @@
 
 namespace App\Http\Requests\Calendar;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Calendar\Traits\ValidateWorkShiftTrait;
 
 class StoreRequest extends FormRequest
 {
+    use ValidateWorkShiftTrait;
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -48,4 +51,13 @@ class StoreRequest extends FormRequest
             'work_shift' => 'work shift'
         ];
     }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator){
+           $this->validateWorkShift($validator);
+        });
+    }
+
+
 }

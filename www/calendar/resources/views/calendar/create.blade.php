@@ -4,6 +4,14 @@
     <div class="container">
         <h3 class="text-bold">Create event</h3>
         <div class="card">
+            @if ($errors->any())
+                <br>
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}<br>
+                    @endforeach
+                </div>
+            @endif
             <div class="card-body">
                 <form method="POST" action="{{ route('calendar.store') }}">
                     @csrf
