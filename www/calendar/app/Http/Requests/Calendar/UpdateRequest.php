@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'event_id' => ['required', 'integer'],
             'event_at' => ['required', 'date'],
             'name' => ['required', 'string', 'max:255'],
             'cost' => ['required', 'integer', 'max:9999999'],

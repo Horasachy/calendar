@@ -14,7 +14,7 @@ class Company extends Model
     protected $fillable = [
         'name'
     ];
-    protected $with = 'users';
+//    protected $with = ['users', 'events'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -25,10 +25,10 @@ class Company extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function events()
     {
-        return $this->belongsTo(CalendarEvent::class, 'id', 'company_id');
+        return $this->belongsToMany(CalendarEvent::class, 'company_events', 'company_id', 'event_id')->orderBy('event_at', 'desc');
     }
 }

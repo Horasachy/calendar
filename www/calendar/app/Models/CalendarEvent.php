@@ -21,16 +21,16 @@ class CalendarEvent extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'cost', 'type', 'employee_id', 'company_id', 'work_shift', 'event_at'
+        'name', 'cost', 'type', 'employee_id', 'work_shift', 'event_at'
     ];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function company()
+    public function companies()
     {
-        return $this->belongsTo(Company::class, 'company_id', 'id');
+        return $this->belongsToMany(Company::class, 'company_events', 'event_id', 'company_id');
     }
 
     /**

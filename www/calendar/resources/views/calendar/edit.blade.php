@@ -28,7 +28,7 @@
                             @enderror
                         </div>
                     </div>
-
+                    <input type="hidden" name="event_id" value="{{ $event->id }}">
                     <div class="form-group mb-3 row">
                         <label class="form-label col-3 col-form-label">{{ __('Cost') }}</label>
                         <div class="col">
@@ -72,10 +72,10 @@
                         <label class="form-label col-3 col-form-label">{{ __('Company') }}</label>
                         <div class="col">
                             <select class="form-control @error('company_id') is-invalid @enderror" name="company_id">
-                                <option value="{{$event->company_id}}"> {{$event->company->name}}</option>
-                                @foreach($companies as $company)
-                                    @if($event->company_id !== $company->id)
-                                        <option value="{{$company->id}}"> {{$company->name}}</option>
+                                <option value="{{$company->id}}"> {{$company->name}}</option>
+                                @foreach($companies as $item)
+                                    @if($company->id !== $item->id)
+                                        <option value="{{$item->id}}"> {{$item->name}}</option>
                                     @endif
                                 @endforeach
                             </select>

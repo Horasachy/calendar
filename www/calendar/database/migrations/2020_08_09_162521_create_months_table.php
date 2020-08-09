@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCalendarEventsTable extends Migration
+class CreateMonthsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,9 @@ class CreateCalendarEventsTable extends Migration
      */
     public function up()
     {
-        Schema::create('calendar_events', function (Blueprint $table) {
+        Schema::create('months', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('cost');
-            $table->string('type');
-            $table->unsignedInteger('employee_id');
-            $table->unsignedTinyInteger('work_shift');
-            $table->date('event_at');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ class CreateCalendarEventsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('calendar_events');
+        Schema::dropIfExists('months');
     }
 }

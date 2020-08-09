@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => '/calendar', 'as' => 'calendar.'], function () {
         Route::get('/create', 'CalendarEventsController@create')->name('create');
         Route::post('/store', 'CalendarEventsController@store')->name('store');
-        Route::get('/{event}/edit', 'CalendarEventsController@edit')->name('edit');
+        Route::get('/{event}/edit/{company_id}', 'CalendarEventsController@edit')->name('edit');
         Route::put('/{event}/update', 'CalendarEventsController@update')->name('update');
         Route::delete('/{event}/delete', 'CalendarEventsController@delete')->name('delete');
     });
